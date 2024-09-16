@@ -13,12 +13,14 @@ async function handleGenerateNewShortURL(req, res) {
     visitHistory: [],
   });
 
-  return res.json({ id: shortID });
+  return res.render("Home", { id: shortID });
+
+  // return res.json({ id: shortID });
 }
 
 async function handleGetAnalytics(req, res) {
   const shortId = req.params.shortID;
-//   console.log("shortId:", shortId);
+  //   console.log("shortId:", shortId);
   const result = await URL.findOne({ shortId: shortId }); // Ensure field name is correct
 
   return res.json({

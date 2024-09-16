@@ -15,6 +15,7 @@ app.set("view engine", "ejs");
 app.set("views", path.resolve("./views"))
 
 app.use(express.json())
+app.use(express.urlencoded({extended: false})); // to support data coming from form
 
 app.use("/url", urlRoute)
 app.use("/", staticRoute)
