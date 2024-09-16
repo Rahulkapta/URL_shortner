@@ -1,7 +1,8 @@
 const express = require("express");
-const {connectToMongoDB} = require("./connect")
 const path = require("path")
+const {connectToMongoDB} = require("./connect")
 const urlRoute= require("./routes/url")
+const staticRoute = require("./routes/staticRouter")
 const URL = require("./models/url");
 
 const app = express();
@@ -15,14 +16,8 @@ app.set("views", path.resolve("./views"))
 
 app.use(express.json())
 
-app.get("/test", async (req, res) => {
-    const allUrls = await URL.find({});
-    return res.render("Home", {
-        urls: allUrls,
-    });
-})
-
 app.use("/url", urlRoute)
+app.use("/", staticRoute)
 
 app.get("/url/:shortId", async(req ,res)=>{
     const shortId= req.params.shortId;
