@@ -28,9 +28,10 @@ async function handleUserLogin(req, res) {
   // res.cookie("uid", sessionId);
   
   //stateless authentication
+  
   const token = setUser(user);
   //for browser websites we use cookies
-  res.cookie("uid", token);
+  res.cookie("token", token);
   return res.redirect("/");
   // console.log(sessionId)
 
